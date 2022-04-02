@@ -1,0 +1,65 @@
+
+<html>
+    <head>
+        <title>Javascript : TD1</title>
+    </head>
+    <body>
+        <div class="contenu">
+            <h1>Modifier le DOM</h1>
+            <div class="partie1" id="p1">
+                <p id="today"> </p>
+            </div>
+            <div class="partie2" id="p2">
+                <p class="paragraphe1" id='p21'><a href="#">lien1</a></p>
+                <p class="paragraphe2" id='p22'> puis <a href="#">lien2</a></p>
+                <p class="paragraphe3" id='p23'><a href="#">lien3</a> ... </p>
+            </div>
+        </div>
+    <script  type="text/javascript">
+        // a)	afficher dans la console le premier fils du nœud ayant p2 comme identifiant
+        console.log(document.getElementById("p2").firstElementChild)
+        // b)	afficher dans la console le texte de toutes les balises <a> 
+        let elems = document.getElementsByTagName("a")
+        for(let elem of elems) {
+            console.log(elem.textContent)
+        }
+        // c)	insérer le texte « ici la date » dans la balise ayant today comme identifiant.
+        console.log(document.getElementById("today").textContent)
+        document.getElementById("today").textContent = "ici la date"
+        // d)	changer le texte « puis » par « et ».
+        document.getElementById("p22").firstChild.textContent = " et "
+        // e)	ajouter un quatrième paragraphe après le paragraphe d’id 23.	
+        //      <p class="paragraphe4" id='p24'>et encore <a href="#">lien4</a> fin</p>
+        let p4 = document.createElement("p")
+        p4.setAttribute("class","paragraphe4")
+        p4.id = "p24"
+        // p4.textContent = "test"
+        let text1 = document.createTextNode(" et encore")
+        p4.appendChild(text1)
+        let ancre = document.createElement("a")
+        ancre.href = "#"
+        ancre.textContent = "lien4"
+        p4.appendChild(ancre)
+        let text2 = document.createTextNode(" fin")
+        p4.appendChild(text2)
+        // ajout de p4 dans le dom
+        document.getElementById("p2").appendChild(p4)
+        console.log(document)
+        
+        let p5 = document.createElement("p")
+        p5.class = "paragraphe5"
+        p5.id = "p25"
+        p5.innerHTML = 'et enfin <a href="#">lien5</a> fin5'
+        document.getElementById("p2").appendChild(p5)
+
+
+        // f)	comment ajouter le 4ème paragraphe avant le 1er paragraphe ?
+        document.getElementById("p2").insertBefore(p5,document.getElementById("p21"))
+        // g)	supprimer le paragraphe d’id p22
+        document.getElementById("p22").remove()
+        // h)	mettre le premier titre h1 en gras et bleu
+        document.getElementsByTagName("h1")[0].style.color = "red"
+    </script>
+    </body>
+    </html>
+    
