@@ -1,1 +1,1 @@
-# TP2_JS
+# TP_Javascript
